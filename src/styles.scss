@@ -46,14 +46,21 @@ body {
     min-width: 64px;
     padding: 0 14px;
 
+    &:focus {
+      background-color: #ffffff;
+      border: 1px solid #ffffff;
+      color: #000000;
+    }
+
     &:active {
       background-color: #ffe81f;
       border: 1px solid #ffe81f;
     }
 
     &:hover {
-      background-color: #ffe81f;
-      border: 1px solid #ffe81f;
+      background-color: #ffffff;
+      border: 1px solid #ffffff;
+      color: #000000;
       cursor: pointer;
     }
 
