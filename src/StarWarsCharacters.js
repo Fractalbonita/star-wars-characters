@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { useDataFetch } from './hooks/useDataFetch';
+import FilterChips from './components/FilterChips';
 import './StarWarsCharacters.css';
 
-import { useDataFetch } from './hooks/useDataFetch';
-
-export default function StarWarsCharacters() {
-  const [
+export default function PeoplePage() {
+  const {
     people,
     films,
     planets,
@@ -12,7 +12,7 @@ export default function StarWarsCharacters() {
     starships,
     vehicles,
     isLoading,
-  ] = useDataFetch();
+  } = useDataFetch();
 
   const [filmFilter, setFilmFilter] = useState('All');
   const [genderFilter, setGenderFilter] = useState('All');
@@ -42,29 +42,17 @@ export default function StarWarsCharacters() {
       ) : (
         <>
           <p>Filter by film</p>
-          {FILM_FILTER_NAMES.map((film) => (
-            <button
-              key={film}
-              type="button"
-              name="filmFilter"
-              aria-pressed={filmFilter === film}
-              onClick={() => setFilmFilter(film)}
-            >
-              {film}
-            </button>
-          ))}
+          <FilterChips
+            filter={filmFilter}
+            onFilter={(film) => setFilmFilter(film)}
+            filterNames={FILM_FILTER_NAMES}
+          />
           <p>Filter by gender</p>
-          {GENDER_FILTER_NAMES.map((gender) => (
-            <button
-              key={gender}
-              type="button"
-              name="genderFilter"
-              aria-pressed={genderFilter === gender}
-              onClick={() => setGenderFilter(gender)}
-            >
-              {gender}
-            </button>
-          ))}
+          <FilterChips
+            filter={genderFilter}
+            onFilter={(gender) => setGenderFilter(gender)}
+            filterNames={GENDER_FILTER_NAMES}
+          />
           <div className="container">
             {people &&
               people
@@ -113,11 +101,11 @@ export default function StarWarsCharacters() {
                       <tr>
                         <td>Homeworld</td>
                         <td>
-                          {
+                          {planets &&
+                            planets.length > 0 &&
                             planets.find(
                               (planet) => planet.url === character.homeworld
-                            ).name
-                          }
+                            ).name}
                         </td>
                       </tr>
                       <tr>
@@ -125,12 +113,18 @@ export default function StarWarsCharacters() {
                         {character.films.length > 0 ? (
                           <td>
                             <ul>
-                              {character.films.map((url) => {
-                                const selectedFilm = films.find(
-                                  (film) => film.url === url
-                                );
-                                return <li>{selectedFilm.title}</li>;
-                              })}
+                              {films &&
+                                films.length > 0 &&
+                                character.films.map((url) => {
+                                  const selectedFilm = films.find(
+                                    (film) => film.url === url
+                                  );
+                                  return (
+                                    <li key={selectedFilm.url}>
+                                      {selectedFilm.title}
+                                    </li>
+                                  );
+                                })}
                             </ul>
                           </td>
                         ) : (
@@ -139,13 +133,19 @@ export default function StarWarsCharacters() {
                       </tr>
                       <tr>
                         <td>Species</td>
-                        {character.species.length > 0 ? (
+                        {species &&
+                        species.length > 0 &&
+                        character.species.length > 0 ? (
                           <>
                             {character.species.map((url) => {
                               const selectedSpecies = species.find(
                                 (type) => type.url === url
                               );
-                              return <td>{selectedSpecies.name}</td>;
+                              return (
+                                <td key={selectedSpecies.url}>
+                                  {selectedSpecies.name}
+                                </td>
+                              );
                             })}
                           </>
                         ) : (
@@ -157,12 +157,18 @@ export default function StarWarsCharacters() {
                         {character.starships.length > 0 ? (
                           <td>
                             <ul>
-                              {character.starships.map((url) => {
-                                const selectedStarship = starships.find(
-                                  (starship) => starship.url === url
-                                );
-                                return <li>{selectedStarship.name}</li>;
-                              })}
+                              {starships &&
+                                starships.length > 0 &&
+                                character.starships.map((url) => {
+                                  const selectedStarship = starships.find(
+                                    (starship) => starship.url === url
+                                  );
+                                  return (
+                                    <li key={selectedStarship.url}>
+                                      {selectedStarship.name}
+                                    </li>
+                                  );
+                                })}
                             </ul>
                           </td>
                         ) : (
@@ -174,12 +180,18 @@ export default function StarWarsCharacters() {
                         {character.vehicles.length > 0 ? (
                           <td>
                             <ul>
-                              {character.vehicles.map((url) => {
-                                const selectedVehicle = vehicles.find(
-                                  (vehicle) => vehicle.url === url
-                                );
-                                return <li>{selectedVehicle.name}</li>;
-                              })}
+                              {vehicles &&
+                                vehicles.length > 0 &&
+                                character.vehicles.map((url) => {
+                                  const selectedVehicle = vehicles.find(
+                                    (vehicle) => vehicle.url === url
+                                  );
+                                  return (
+                                    <li key={selectedVehicle.url}>
+                                      {selectedVehicle.name}
+                                    </li>
+                                  );
+                                })}
                             </ul>
                           </td>
                         ) : (
