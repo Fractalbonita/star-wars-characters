@@ -59,15 +59,15 @@ export default function StarWarsCharacters() {
       character.films.includes(film.url);
   });
 
-  const GENDER_FILTER_CATEGORIES = {
-    All: () => true,
-    Female: (character) => character.gender === 'female',
-    Male: (character) => character.gender === 'male',
-    None: (character) => character.gender === 'n/a',
-  };
+  const GENDER_FILTER_CATEGORIES = { All: () => true };
+  people
+    .map((character) => character.gender)
+    .forEach((sex) => {
+      GENDER_FILTER_CATEGORIES[sex] = (character) => character.gender === sex;
+    });
 
   const FILM_FILTER_NAMES = Object.keys(FILM_FILTER_CATEGORIES);
-  
+
   const GENDER_FILTER_NAMES = Object.keys(GENDER_FILTER_CATEGORIES);
 
   return (
