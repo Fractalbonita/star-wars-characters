@@ -1,57 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './StarWarsCharacters.css';
 
+import { useDataFetch } from './hooks/useDataFetch';
+
 export default function StarWarsCharacters() {
-  const [people, setPeople] = useState([]);
-  const [films, setFilms] = useState([]);
-  const [planets, setPlanets] = useState([]);
-  const [species, setSpecies] = useState([]);
-  const [starships, setStarships] = useState([]);
-  const [vehicles, setVehicles] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [
+    people,
+    films,
+    planets,
+    species,
+    starships,
+    vehicles,
+    isLoading,
+  ] = useDataFetch();
+
   const [filmFilter, setFilmFilter] = useState('All');
   const [genderFilter, setGenderFilter] = useState('All');
-
-  useEffect(() => {
-    Promise.all([
-      getData('people'),
-      getData('films'),
-      getData('planets'),
-      getData('species'),
-      getData('starships'),
-      getData('vehicles'),
-    ]).then(([people, films, planets, species, starships, vehicles]) => {
-      setPeople(people);
-      setFilms(films);
-      setPlanets(planets);
-      setSpecies(species);
-      setStarships(starships);
-      setVehicles(vehicles);
-      setLoading(!isLoading);
-    });
-  }, []);
-
-  const getData = async (endpoint) => {
-    const data = localStorage.getItem(endpoint);
-    if (data) {
-      return Promise.resolve(JSON.parse(data));
-    }
-    const baseURL = 'https://swapi.dev/api';
-    let nextPage = baseURL + '/' + endpoint + '/';
-    let result = [];
-    try {
-      do {
-        const response = await fetch(nextPage);
-        const data = await response.json();
-        result = result.concat(data.results);
-        nextPage = data.next;
-      } while (nextPage);
-    } catch (error) {
-      console.log(error);
-    }
-    localStorage.setItem(endpoint, JSON.stringify(result));
-    return result;
-  };
 
   const FILM_FILTER_CATEGORIES = { All: () => true };
   films.forEach((film) => {
@@ -176,16 +140,14 @@ export default function StarWarsCharacters() {
                       <tr>
                         <td>Species</td>
                         {character.species.length > 0 ? (
-                          <td>
-                            <ul>
-                              {character.species.map((url) => {
-                                const selectedSpecies = species.find(
-                                  (type) => type.url === url
-                                );
-                                return <li>{selectedSpecies.name}</li>;
-                              })}
-                            </ul>
-                          </td>
+                          <>
+                            {character.species.map((url) => {
+                              const selectedSpecies = species.find(
+                                (type) => type.url === url
+                              );
+                              return <td>{selectedSpecies.name}</td>;
+                            })}
+                          </>
                         ) : (
                           <td>no data</td>
                         )}
