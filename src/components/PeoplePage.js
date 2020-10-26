@@ -44,7 +44,7 @@ export default function PeoplePage() {
             onFilter={(film) => setFilmFilter(film)}
             filterNames={FILM_FILTER_NAMES}
           />
-          <p>Filter by gender</p>
+          <p className="people__text">Filter by gender</p>
           <FilterChips
             filter={genderFilter}
             onFilter={(gender) => setGenderFilter(gender)}
