@@ -1,6 +1,6 @@
 # Star Wars Characters
 
-Responsive web app that displays all 82 star wars characters featured in any Star Wars film. Data was consumed from the [Star Wars API SWAPI](https://swapi.dev/).
+Responsive web app that displays all 82 characters featured in any Star Wars film. Data was consumed from the [Star Wars API SWAPI](https://swapi.dev/).
 
 The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -11,17 +11,19 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 - PropTypes
 - SCSS
 
-## Deployment
+## Setup
+This is a straightforward react-app which uses [yarn](https://yarnpkg.com/), so the usual commands can be applied.
 
-### Available Scripts
+If you want to install this repo, follow the following steps:
+1. Clone this repo.
+2. Install all dependencies with `yarn install`.
+3. Open the project directory in your favorite text editor.
 
-In the project directory, you can run:
-
-#### `sass --watch app/sass:public/stylesheets`
+### `sass --watch app/sass:public/stylesheets`
 
 The project directory can be watched automatically with the `--watch` flag.
 
-#### `yarn start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -29,12 +31,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-#### `yarn test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### `yarn build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -44,7 +46,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-#### `yarn eject`
+### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
