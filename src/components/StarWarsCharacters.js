@@ -1,10 +1,24 @@
 import React from 'react';
-import PlanetList from './components/PlanetList';
-import FilmList from './components/FilmList';
-import SpeciesList from './components/SpeciesList';
-import StarshipList from './components/StarshipList';
-import VehicleList from './components/VehicleList';
+import PlanetList from './PlanetList';
+import FilmList from './FilmList';
+import SpeciesList from './SpeciesList';
+import StarshipList from './StarshipList';
+import VehicleList from './VehicleList';
+import PropTypes from 'prop-types';
 import './StarWarsCharacters.css';
+
+StarWarsCharacters.propTypes = {
+  people: PropTypes.array,
+  planets: PropTypes.array,
+  films: PropTypes.array,
+  species: PropTypes.array,
+  starships: PropTypes.array,
+  vehicles: PropTypes.array,
+  filmCategories: PropTypes.object,
+  filmFilter: PropTypes.string,
+  genderCategories: PropTypes.object,
+  genderFilter: PropTypes.string,
+};
 
 export default function StarWarsCharacters({
   people,

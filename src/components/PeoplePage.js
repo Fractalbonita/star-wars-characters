@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSwApi } from './hooks/useSwApi';
-import FilterChips from './components/FilterChips';
+import { useSwApi } from '../hooks/useSwApi';
+import FilterChips from './FilterChips';
 import StarWarsCharacters from './StarWarsCharacters';
 
 export default function PeoplePage() {

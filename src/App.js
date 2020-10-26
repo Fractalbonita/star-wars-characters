@@ -1,5 +1,5 @@
 import React from 'react';
-import PeoplePage from './PeoplePage';
+import PeoplePage from './components/PeoplePage';
 
 function App() {
   return (

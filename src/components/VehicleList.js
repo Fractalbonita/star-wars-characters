@@ -1,4 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+VehicleList.propTypes = {
+  vehicles: PropTypes.array,
+  item: PropTypes.object,
+};
 
 export default function VehicleList({ vehicles, item }) {
   return (

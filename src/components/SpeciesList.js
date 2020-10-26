@@ -1,4 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+SpeciesList.propTypes = {
+  species: PropTypes.array,
+  item: PropTypes.object,
+};
 
 export default function SpeciesList({ species, item }) {
   return (

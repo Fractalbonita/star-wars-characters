@@ -1,6 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function FilmList({films, item }) {
+FilmList.propTypes = {
+  films: PropTypes.array,
+  item: PropTypes.object,
+};
+
+export default function FilmList({ films, item }) {
   return (
     <ul>
       {films.length > 0 &&
