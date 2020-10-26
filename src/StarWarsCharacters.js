@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { useDataFetch } from './hooks/useDataFetch';
+import { useSwApi } from './hooks/useSwApi';
 import FilterChips from './components/FilterChips';
 import './StarWarsCharacters.css';
 
 export default function PeoplePage() {
-  const {
-    people,
-    films,
-    planets,
-    species,
-    starships,
-    vehicles,
-    isLoading,
-  } = useDataFetch();
+  const [people, isLoading] = useSwApi('people');
+  const [planets] = useSwApi('planets');
+  const [films] = useSwApi('films');
+  const [species] = useSwApi('species');
+  const [starships] = useSwApi('starships');
+  const [vehicles] = useSwApi('vehicles');
 
   const [filmFilter, setFilmFilter] = useState('All');
   const [genderFilter, setGenderFilter] = useState('All');
@@ -101,8 +98,7 @@ export default function PeoplePage() {
                       <tr>
                         <td>Homeworld</td>
                         <td>
-                          {planets &&
-                            planets.length > 0 &&
+                          {planets.length > 0 &&
                             planets.find(
                               (planet) => planet.url === character.homeworld
                             ).name}
@@ -113,8 +109,7 @@ export default function PeoplePage() {
                         {character.films.length > 0 ? (
                           <td>
                             <ul>
-                              {films &&
-                                films.length > 0 &&
+                              {films.length > 0 &&
                                 character.films.map((url) => {
                                   const selectedFilm = films.find(
                                     (film) => film.url === url
@@ -133,9 +128,7 @@ export default function PeoplePage() {
                       </tr>
                       <tr>
                         <td>Species</td>
-                        {species &&
-                        species.length > 0 &&
-                        character.species.length > 0 ? (
+                        {species.length > 0 && character.species.length > 0 ? (
                           <>
                             {character.species.map((url) => {
                               const selectedSpecies = species.find(
@@ -157,8 +150,7 @@ export default function PeoplePage() {
                         {character.starships.length > 0 ? (
                           <td>
                             <ul>
-                              {starships &&
-                                starships.length > 0 &&
+                              {starships.length > 0 &&
                                 character.starships.map((url) => {
                                   const selectedStarship = starships.find(
                                     (starship) => starship.url === url
@@ -180,8 +172,7 @@ export default function PeoplePage() {
                         {character.vehicles.length > 0 ? (
                           <td>
                             <ul>
-                              {vehicles &&
-                                vehicles.length > 0 &&
+                              {vehicles.length > 0 &&
                                 character.vehicles.map((url) => {
                                   const selectedVehicle = vehicles.find(
                                     (vehicle) => vehicle.url === url
