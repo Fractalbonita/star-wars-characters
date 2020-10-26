@@ -148,7 +148,13 @@ export default function StarWarsCharacters() {
                       </tr>
                       <tr>
                         <td>Homeworld</td>
-                        <td>{character.homeworld}</td>
+                        <td>
+                          {
+                            planets.find(
+                              (planet) => planet.url === character.homeworld
+                            ).name
+                          }
+                        </td>
                       </tr>
                       <tr>
                         <td>Films</td>
