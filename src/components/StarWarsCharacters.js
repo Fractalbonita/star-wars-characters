@@ -5,7 +5,6 @@ import SpeciesList from './SpeciesList';
 import StarshipList from './StarshipList';
 import VehicleList from './VehicleList';
 import PropTypes from 'prop-types';
-import './StarWarsCharacters.css';
 
 StarWarsCharacters.propTypes = {
   people: PropTypes.array,
@@ -34,13 +33,13 @@ export default function StarWarsCharacters({
 }) {
   return (
     <>
-      <div className="container">
+      <div className="character__container">
         {people &&
           people
             .filter((character) => filmCategories[filmFilter](character))
             .filter((character) => genderCategories[genderFilter](character))
             .map((character) => (
-              <table key={character.url}>
+              <table key={character.url} className="character__table">
                 <thead>
                   <tr>
                     <th colSpan={2}>{character.name}</th>

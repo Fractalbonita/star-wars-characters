@@ -12,16 +12,14 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 - SCSS
 
 ## Setup
+
 This is a straightforward react-app which uses [yarn](https://yarnpkg.com/), so the usual commands can be applied.
 
 If you want to install this repo, follow the following steps:
+
 1. Clone this repo.
 2. Install all dependencies with `yarn install`.
 3. Open the project directory in your favorite text editor.
-
-### `sass --watch app/sass:public/stylesheets`
-
-The project directory can be watched automatically with the `--watch` flag.
 
 ### `yarn start`
 

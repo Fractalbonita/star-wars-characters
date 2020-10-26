@@ -11,8 +11,9 @@ export default function FilterChips({ filter, onFilter, filterNames }) {
   return (
     <>
       {filterNames.map((category) => (
-        <button
+        <button 
           key={category}
+          className="filterChip__button"
           type="button"
           name="filmFilter"
           aria-pressed={filter === category}

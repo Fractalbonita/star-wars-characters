@@ -8,7 +8,7 @@ VehicleList.propTypes = {
 
 export default function VehicleList({ vehicles, item }) {
   return (
-    <ul>
+    <ul className="resources__list">
       {vehicles.length > 0 &&
         item.vehicles.map((url) => {
           const selectedVehicle = vehicles.find(

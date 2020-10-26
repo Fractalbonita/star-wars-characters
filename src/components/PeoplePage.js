@@ -33,12 +33,12 @@ export default function PeoplePage() {
 
   return (
     <>
-      <h1 className="heading">Star Wars Characters</h1>
+      <h1 className="people__headline">Star Wars Characters</h1>
       {isLoading ? (
-        <h2>Loading data ...</h2>
+        <h2 className="people__sub-headline">Loading data ...</h2>
       ) : (
         <>
-          <p>Filter by film</p>
+          <p className="people__text">Filter by film</p>
           <FilterChips
             filter={filmFilter}
             onFilter={(film) => setFilmFilter(film)}

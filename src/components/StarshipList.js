@@ -8,7 +8,7 @@ StarshipList.propTypes = {
 
 export default function StarshipList({ starships, item }) {
   return (
-    <ul>
+    <ul className="resources__list">
       {starships.length > 0 &&
         item.starships.map((url) => {
           const selectedStarship = starships.find(
