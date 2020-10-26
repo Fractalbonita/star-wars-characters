@@ -1,10 +1,10 @@
 import React from 'react';
-import StarWarsCharacters from './StarWarsCharacters';
+import PeoplePage from './PeoplePage';
 
 function App() {
   return (
     <div className="App">
-      <StarWarsCharacters />
+      <PeoplePage />
     </div>
   );
 }
