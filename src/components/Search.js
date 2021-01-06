@@ -4,12 +4,20 @@ import IconClear from './IconClear';
 import IconSearch from './IconSearch';
 
 Search.propTypes = {
-  value: PropTypes.string,
-  onQuery: PropTypes.func,
-  onClear: PropTypes.func,
+  searchTerm: PropTypes.string,
+  setSearchTerm: PropTypes.func,
 };
 
-export default function Search({ value, onQuery, onClear }) {
+export default function Search({ searchTerm, setSearchTerm }) {
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+  };
+
+  const handleReset = () => {
+    setSearchTerm('');
+  };
+
   return (
     <form className="search__form">
       <label className="search__label">
@@ -18,19 +26,19 @@ export default function Search({ value, onQuery, onClear }) {
           type="search"
           id="search"
           name="search"
-          value={value}
-          onChange={onQuery}
+          value={searchTerm}
+          onChange={handleSearch}
           autoComplete="off"
           aria-label="Search for a specific character"
           placeholder="Name"
           className="search__input"
         />
       </label>
-      {value && (
+      {searchTerm && (
         <button
           type="reset"
           aria-label="Clear search"
-          onClick={onClear}
+          onClick={handleReset}
           className="search__button"
         >
           <IconClear width="18" height="18" />

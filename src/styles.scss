@@ -4,6 +4,7 @@
   --secondary-text-color: #ffffff;
   --surface-color: #333333;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -163,6 +164,10 @@ body {
     font-weight: bold;
     outline: none;
     width: 100%;
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
 
     &::placeholder {
       color: var(--background-color);

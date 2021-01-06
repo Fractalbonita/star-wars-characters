@@ -33,15 +33,6 @@ export default function PeoplePage() {
 
   const GENDER_FILTER_NAMES = Object.keys(GENDER_FILTER_CATEGORIES);
 
-  const handleSearch = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-  };
-
-  const handleClear = () => {
-    setSearchTerm('');
-  };
-
   return (
     <>
       <h1 className="people__headline">Star Wars Characters</h1>
@@ -49,11 +40,7 @@ export default function PeoplePage() {
         <h2 className="people__sub-headline">Loading data ...</h2>
       ) : (
         <>
-          <Search
-            value={searchTerm}
-            onQuery={handleSearch}
-            onClear={handleClear}
-          />
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <p className="people__text">Filter by film</p>
           <FilterChips
             filter={filmFilter}
