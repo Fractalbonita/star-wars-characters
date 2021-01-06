@@ -1,15 +1,23 @@
 # Star Wars Characters
 
+## Description
+
 Responsive web app that displays all 82 characters featured in any Star Wars film. Data was consumed from the [Star Wars API SWAPI](https://swapi.dev/).
+
+Characters can be quickly searched by name. They can also be filtered by gender and film they appeared in.
 
 The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Tech-stack
+## Demo
+
+## Tech stack
 
 - React
 - RESTful API
 - PropTypes
+- localStorage
 - SCSS
+- BEM
 
 ## Setup
 
