@@ -33,122 +33,127 @@ export default function StarWarsCharacters({
   genderFilter,
   searchTerm,
 }) {
-  const search = searchTerm.length < 3 ? '' : searchTerm.toLowerCase();
-
+  const filteredPeople =
+    people &&
+    people
+      .filter((character) =>
+        character.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .filter((character) => filmCategories[filmFilter](character))
+      .filter((character) => genderCategories[genderFilter](character));
   return (
     <>
-      <div className="character__container">
-        {people &&
-          people
-            .filter((character) =>
-              character.name.toLowerCase().includes(search)
-            )
-            .filter((character) => filmCategories[filmFilter](character))
-            .filter((character) => genderCategories[genderFilter](character))
-            .map((character) => (
-              <table key={character.url} className="character__table">
-                <thead>
-                  <tr>
-                    <th colSpan={2}>{character.name}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Birth year</td>
-                    <td>{character.birth_year}</td>
-                  </tr>
-                  <tr>
-                    <td>Eye color</td>
-                    <td>{character.eye_color}</td>
-                  </tr>
-                  <tr>
-                    <td>Gender</td>
-                    <td>{character.gender}</td>
-                  </tr>
-                  <tr>
-                    <td>Hair color</td>
-                    <td>{character.hair_color}</td>
-                  </tr>
-                  <tr>
-                    <td>Height</td>
-                    <td>{character.height}</td>
-                  </tr>
-                  <tr>
-                    <td>Mass</td>
-                    <td>{character.mass}</td>
-                  </tr>
-                  <tr>
-                    <td>Skin color</td>
-                    <td>{character.skin_color}</td>
-                  </tr>
-                  <tr>
-                    <td>Homeworld</td>
-                    {character.homeworld.length > 0 ? (
-                      <td>
-                        <PlanetList planets={planets} item={character} />
-                      </td>
-                    ) : (
-                      <td>no data</td>
-                    )}
-                  </tr>
-                  <tr>
-                    <td>Films</td>
-                    {character.films.length > 0 ? (
-                      <td>
-                        <FilmList films={films} item={character} />
-                      </td>
-                    ) : (
-                      <td>no data</td>
-                    )}
-                  </tr>
-                  <tr>
-                    <td>Species</td>
-                    {species.length > 0 && character.species.length > 0 ? (
-                      <SpeciesList species={species} item={character} />
-                    ) : (
-                      <td>no data</td>
-                    )}
-                  </tr>
-                  <tr>
-                    <td>Starships</td>
-                    {character.starships.length > 0 ? (
-                      <td>
-                        <StarshipList starships={starships} item={character} />
-                      </td>
-                    ) : (
-                      <td>no data</td>
-                    )}
-                  </tr>
-                  <tr>
-                    <td>Vehicles</td>
-                    {character.vehicles.length > 0 ? (
-                      <td>
-                        <VehicleList vehicles={vehicles} item={character} />
-                      </td>
-                    ) : (
-                      <td>no data</td>
-                    )}
-                  </tr>
-                  <tr>
-                    <td>Url</td>
-                    <td>{character.url}</td>
-                  </tr>
-                  <tr>
-                    <td>Created</td>
+      {!filteredPeople || filteredPeople.length === 0 ? (
+        <p className="character__search">
+          Your search did not match any character.
+        </p>
+      ) : (
+        <div className="character__container">
+          {filteredPeople.map((character) => (
+            <table key={character.url} className="character__table">
+              <thead>
+                <tr>
+                  <th colSpan={2}>{character.name}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Birth year</td>
+                  <td>{character.birth_year}</td>
+                </tr>
+                <tr>
+                  <td>Eye color</td>
+                  <td>{character.eye_color}</td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>{character.gender}</td>
+                </tr>
+                <tr>
+                  <td>Hair color</td>
+                  <td>{character.hair_color}</td>
+                </tr>
+                <tr>
+                  <td>Height</td>
+                  <td>{character.height}</td>
+                </tr>
+                <tr>
+                  <td>Mass</td>
+                  <td>{character.mass}</td>
+                </tr>
+                <tr>
+                  <td>Skin color</td>
+                  <td>{character.skin_color}</td>
+                </tr>
+                <tr>
+                  <td>Homeworld</td>
+                  {character.homeworld.length > 0 ? (
                     <td>
-                      {new Date(character.created).toLocaleDateString('de-DE')}
+                      <PlanetList planets={planets} item={character} />
                     </td>
-                  </tr>
-                  <tr>
-                    <td>Edited</td>
+                  ) : (
+                    <td>no data</td>
+                  )}
+                </tr>
+                <tr>
+                  <td>Films</td>
+                  {character.films.length > 0 ? (
                     <td>
-                      {new Date(character.edited).toLocaleDateString('de-DE')}
+                      <FilmList films={films} item={character} />
                     </td>
-                  </tr>
-                </tbody>
-              </table>
-            ))}
-      </div>
+                  ) : (
+                    <td>no data</td>
+                  )}
+                </tr>
+                <tr>
+                  <td>Species</td>
+                  {species.length > 0 && character.species.length > 0 ? (
+                    <SpeciesList species={species} item={character} />
+                  ) : (
+                    <td>no data</td>
+                  )}
+                </tr>
+                <tr>
+                  <td>Starships</td>
+                  {character.starships.length > 0 ? (
+                    <td>
+                      <StarshipList starships={starships} item={character} />
+                    </td>
+                  ) : (
+                    <td>no data</td>
+                  )}
+                </tr>
+                <tr>
+                  <td>Vehicles</td>
+                  {character.vehicles.length > 0 ? (
+                    <td>
+                      <VehicleList vehicles={vehicles} item={character} />
+                    </td>
+                  ) : (
+                    <td>no data</td>
+                  )}
+                </tr>
+                <tr>
+                  <td>Url</td>
+                  <td>{character.url}</td>
+                </tr>
+                <tr>
+                  <td>Created</td>
+                  <td>
+                    {new Date(character.created).toLocaleDateString('de-DE')}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Edited</td>
+                  <td>
+                    {new Date(character.edited).toLocaleDateString('de-DE')}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          ))}
+        </div>
+      )}
     </>
   );
 }

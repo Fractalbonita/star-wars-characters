@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IconClear from './IconClear';
+import IconSearch from './IconSearch';
 
 Search.propTypes = {
   value: PropTypes.string,
@@ -9,9 +11,9 @@ Search.propTypes = {
 
 export default function Search({ value, onQuery, onClear }) {
   return (
-    <form>
-      <label>
-        <span>S</span>
+    <form className="search__form">
+      <label className="search__label">
+        <IconSearch width="24" height="24" className="search__magnifier" />
         <input
           type="search"
           id="search"
@@ -20,14 +22,20 @@ export default function Search({ value, onQuery, onClear }) {
           onChange={onQuery}
           autoComplete="off"
           aria-label="Search for a specific character"
-          placeholder="Character name"
+          placeholder="Name"
+          className="search__input"
         />
-        {value && (
-          <button type="reset" aria-label="Clear search" onClick={onClear}>
-            X
-          </button>
-        )}
       </label>
+      {value && (
+        <button
+          type="reset"
+          aria-label="Clear search"
+          onClick={onClear}
+          className="search__button"
+        >
+          <IconClear width="18" height="18" />
+        </button>
+      )}
     </form>
   );
 }

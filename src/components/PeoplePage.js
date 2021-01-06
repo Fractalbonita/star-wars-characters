@@ -13,7 +13,6 @@ export default function PeoplePage() {
   const [vehicles] = useSwApi('vehicles');
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredPeople, setFilteredPeople] = useState();
   const [filmFilter, setFilmFilter] = useState('All');
   const [genderFilter, setGenderFilter] = useState('All');
 
@@ -37,12 +36,6 @@ export default function PeoplePage() {
   const handleSearch = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    setFilteredPeople(
-      people.filter((character) => {
-        console.log(searchTerm);
-        return character.name.toLowerCase().includes(searchTerm.toLowerCase());
-      })
-    );
   };
 
   const handleClear = () => {
