@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSwApi } from '../hooks/useSwApi';
 import FilterChips from './FilterChips';
+import Search from './Search';
 import StarWarsCharacters from './StarWarsCharacters';
 
 export default function PeoplePage() {
@@ -11,6 +12,8 @@ export default function PeoplePage() {
   const [starships] = useSwApi('starships');
   const [vehicles] = useSwApi('vehicles');
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredPeople, setFilteredPeople] = useState();
   const [filmFilter, setFilmFilter] = useState('All');
   const [genderFilter, setGenderFilter] = useState('All');
 
@@ -31,6 +34,21 @@ export default function PeoplePage() {
 
   const GENDER_FILTER_NAMES = Object.keys(GENDER_FILTER_CATEGORIES);
 
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    setFilteredPeople(
+      people.filter((character) => {
+        console.log(searchTerm);
+        return character.name.toLowerCase().includes(searchTerm.toLowerCase());
+      })
+    );
+  };
+
+  const handleClear = () => {
+    setSearchTerm('');
+  };
+
   return (
     <>
       <h1 className="people__headline">Star Wars Characters</h1>
@@ -38,6 +56,11 @@ export default function PeoplePage() {
         <h2 className="people__sub-headline">Loading data ...</h2>
       ) : (
         <>
+          <Search
+            value={searchTerm}
+            onQuery={handleSearch}
+            onClear={handleClear}
+          />
           <p className="people__text">Filter by film</p>
           <FilterChips
             filter={filmFilter}
@@ -57,6 +80,7 @@ export default function PeoplePage() {
             species={species}
             starships={starships}
             vehicles={vehicles}
+            searchTerm={searchTerm}
             filmCategories={FILM_FILTER_CATEGORIES}
             filmFilter={filmFilter}
             genderCategories={GENDER_FILTER_CATEGORIES}
