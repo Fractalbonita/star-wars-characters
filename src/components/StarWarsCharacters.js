@@ -17,6 +17,7 @@ StarWarsCharacters.propTypes = {
   filmFilter: PropTypes.string,
   genderCategories: PropTypes.object,
   genderFilter: PropTypes.string,
+  searchTerm: PropTypes.string,
 };
 
 export default function StarWarsCharacters({
@@ -30,12 +31,18 @@ export default function StarWarsCharacters({
   filmFilter,
   genderCategories,
   genderFilter,
+  searchTerm,
 }) {
+  const search = searchTerm.length < 3 ? '' : searchTerm.toLowerCase();
+
   return (
     <>
       <div className="character__container">
         {people &&
           people
+            .filter((character) =>
+              character.name.toLowerCase().includes(search)
+            )
             .filter((character) => filmCategories[filmFilter](character))
             .filter((character) => genderCategories[genderFilter](character))
             .map((character) => (
