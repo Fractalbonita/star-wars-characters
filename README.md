@@ -8,8 +8,6 @@ Characters can be quickly searched by name. They can also be filtered by gender 
 
 The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Demo
-
 ## Tech stack
 
 - React
